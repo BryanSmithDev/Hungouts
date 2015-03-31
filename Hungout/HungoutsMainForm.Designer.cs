@@ -55,6 +55,7 @@
             // 
             // conversationPicker
             // 
+            this.conversationPicker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.conversationPicker.FormattingEnabled = true;
             this.conversationPicker.Location = new System.Drawing.Point(13, 414);
             this.conversationPicker.Name = "conversationPicker";

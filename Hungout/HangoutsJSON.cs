@@ -138,7 +138,7 @@ namespace Hungout
         {
             string name = "";
             foreach(ParticipantData p in participant_data) {
-                name = p.fallback_name + " ";
+                name = name + " " + p.fallback_name + " ";
             }
             return name;
         }
