@@ -11,9 +11,11 @@ using System.Windows.Forms;
 
 namespace Hungout
 {
-    public partial class Form1 : Form
+    public partial class HungoutsMainForm : Form
     {
-        public Form1()
+        RootObject currentRootObject;
+
+        public HungoutsMainForm()
         {
             InitializeComponent();
         }
@@ -25,7 +27,7 @@ namespace Hungout
 
             // Set filter options and filter index.
             openFileDialog1.Filter = "Text Files (.txt)|*.txt|JSON Files (.json)|*.json";
-            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.FilterIndex = 2;
 
             int size = -1;
             DialogResult result = openFileDialog1.ShowDialog(); // Show the dialog.
@@ -36,20 +38,26 @@ namespace Hungout
                 {
                     string text = File.ReadAllText(file);
                     size = text.Length;
-                    richTextBox1.Text = text;
                     HangoutsJSON hg = new HangoutsJSON();
-
                     hg.json = text;
-                    hg.parse();
+                    currentRootObject = hg.parse();
+                    conversationPicker.Items.AddRange(currentRootObject.conversation_state.ToArray());
+                    conversationPicker.SelectedIndex = 0;
 
                 }
                 catch (IOException)
                 {
                 }
             }
-            Console.WriteLine(size); // <-- Shows file size in debugging mode.
-            Console.WriteLine(result); // <-- For debugging use.
+
         }
 
+        private void conversationPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            messageListBox.Items.Clear();
+            int index = conversationPicker.SelectedIndex;
+            ConversationState cs = currentRootObject.conversation_state.ElementAt(index);
+            messageListBox.Items.AddRange(cs.conversation_state.@event.ToArray());
+        }
     }
 }

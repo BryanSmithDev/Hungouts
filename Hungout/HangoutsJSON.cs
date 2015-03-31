@@ -133,6 +133,16 @@ namespace Hungout
         public bool fork_on_external_invite { get; set; }
         public List<string> network_type { get; set; }
         public string force_history_state { get; set; }
+
+        override public string ToString()
+        {
+            string name = "";
+            foreach(ParticipantData p in participant_data) {
+                name = p.fallback_name + " ";
+            }
+            return name;
+        }
+
     }
 
     public class EventContinuationToken
@@ -269,6 +279,12 @@ namespace Hungout
         public DeliveryMedium2 delivery_medium { get; set; }
         public string event_type { get; set; }
         public string event_version { get; set; }
+        
+        override public string ToString()
+        {
+            if (chat_message.message_content.segment == null) return "";
+            return chat_message.message_content.segment.ElementAt(0).text;
+        }
     }
 
     public class ConversationState2
@@ -284,6 +300,11 @@ namespace Hungout
         public ConversationId conversation_id { get; set; }
         public ResponseHeader response_header { get; set; }
         public ConversationState2 conversation_state { get; set; }
+
+        public override string ToString()
+        {
+            return conversation_state.conversation.ToString();
+        }
     }
 
     public class RootObject
