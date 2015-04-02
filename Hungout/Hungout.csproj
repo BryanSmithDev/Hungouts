@@ -48,6 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatMessageListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HungoutsMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -57,6 +60,9 @@
     <Compile Include="HangoutsJSON.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ChatMessageListBox.resx">
+      <DependentUpon>ChatMessageListBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HungoutsMainForm.resx">
       <DependentUpon>HungoutsMainForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -39,8 +39,8 @@ namespace Hungout
 
         public bool PreFilterMessage(ref Message m)
         {
-           if (m.Msg == WM_LBUTTONDOWN &&
-                controlsToMove.Contains(Control.FromHandle(m.HWnd)))
+            if (m.Msg == WM_LBUTTONDOWN &&
+                 controlsToMove.Contains(Control.FromHandle(m.HWnd)))
             {
                 ReleaseCapture();
                 SendMessage(this.Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
@@ -96,7 +96,8 @@ namespace Hungout
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
-        }
 
+
+        }
     }
 }
